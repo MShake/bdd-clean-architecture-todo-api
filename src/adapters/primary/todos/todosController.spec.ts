@@ -1,14 +1,22 @@
 import { InMemoryTodoRepository } from '../../secondaries/todos/InMemoryTodoRepository';
-import { Todo } from './../../../domain/models/todo';
+import { Todo } from './../../../domain/models';
 import { TodosController } from './todos.controller';
 import { InMemoryAuthenticationGateway } from '../../secondaries/authentication/InMemoryAuthenticationGateway';
 import { InMemoryUserRepository } from '../../secondaries/users/InMemoryUserRepository';
-import { CreateTodoUseCase } from '../../../domain/usecases/todos/createTodoUsecase';
-import { RetrieveTodosUseCase } from '../../../domain/usecases/todos/retrieveTodosUsecase';
+
+import {
+  CreateTodoUseCase,
+  RetrieveTodosByCustomerIdUseCase,
+  RetrieveTodosUseCase,
+} from '../../../domain/usecases';
 
 const todoRepository = new InMemoryTodoRepository();
 const userRepository = new InMemoryUserRepository();
 const authenticationGateway = new InMemoryAuthenticationGateway(userRepository);
+const retrieveTodosByCustomerIdUsecase: RetrieveTodosByCustomerIdUseCase = new RetrieveTodosByCustomerIdUseCase(
+  todoRepository,
+  authenticationGateway,
+);
 const createTodoUsecase: CreateTodoUseCase = new CreateTodoUseCase(
   todoRepository,
   authenticationGateway,
@@ -19,6 +27,7 @@ const retrieveTodoUsecases: RetrieveTodosUseCase = new RetrieveTodosUseCase(
 const todosController: TodosController = new TodosController(
   retrieveTodoUsecases,
   createTodoUsecase,
+  retrieveTodosByCustomerIdUsecase,
 );
 
 describe('TodosController', () => {

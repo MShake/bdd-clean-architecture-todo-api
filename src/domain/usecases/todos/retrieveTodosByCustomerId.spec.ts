@@ -2,7 +2,7 @@ import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/aut
 import { InMemoryTodoRepository } from '../../../adapters/secondaries/todos/InMemoryTodoRepository';
 import { InMemoryUserRepository } from '../../../adapters/secondaries/users/InMemoryUserRepository';
 import { Todo } from '../../models';
-import { RetrieveTodosByCustomerIdUseCase } from './retrieveTodosByCustomerIdUsecase';
+import { RetrieveTodosByCustomerIdUseCase } from './../../usecases';
 
 const userRepository: InMemoryUserRepository = new InMemoryUserRepository();
 const authenticationGateway: InMemoryAuthenticationGateway = new InMemoryAuthenticationGateway(
@@ -59,21 +59,21 @@ describe('Retrieve Todo By Customer Id Use Case', () => {
   });
 
   it('should only retrieve and return the todos of the authenticated customer', async () => {
-    const userToken = '1.user';
+    const userToken = 'Bearer 1.user';
     const userTodos: Array<Todo> = await retrieveTodosByCustomerId.handle(
       userToken,
     );
     expect(userTodos).toHaveLength(3);
     expectTodosToBelongTo(userTodos, '1');
 
-    const adminToken = '2.admin';
+    const adminToken = 'Bearer 2.admin';
     const adminTodos: Array<Todo> = await retrieveTodosByCustomerId.handle(
       adminToken,
     );
     expect(adminTodos).toHaveLength(1);
     expectTodosToBelongTo(adminTodos, '2');
 
-    const testToken = '3.test';
+    const testToken = 'Bearer 3.test';
     const testTodos: Array<Todo> = await retrieveTodosByCustomerId.handle(
       testToken,
     );
@@ -82,7 +82,7 @@ describe('Retrieve Todo By Customer Id Use Case', () => {
   });
 
   it('should throw error if we have not a valid token', async () => {
-    const invalidToken = 'invalid.token.not.valid';
+    const invalidToken = 'Bearer invalid.token.not.valid';
     await expect(
       retrieveTodosByCustomerId.handle(invalidToken),
     ).rejects.toThrowError('Access Denied: Invalid Token');

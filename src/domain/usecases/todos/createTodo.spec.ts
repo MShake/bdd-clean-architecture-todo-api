@@ -1,7 +1,7 @@
 import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
-import { Todo } from '../../models/todo';
+import { Todo } from '../../models';
 import { InMemoryTodoRepository } from '../../../adapters/secondaries/todos/InMemoryTodoRepository';
-import { CreateTodoUseCase } from './createTodoUsecase';
+import { CreateTodoUseCase } from './../../usecases';
 import { InMemoryUserRepository } from '../../../adapters/secondaries/users/InMemoryUserRepository';
 
 const todoRepository: InMemoryTodoRepository = new InMemoryTodoRepository();
@@ -21,7 +21,7 @@ describe('Create Todo Usecase', () => {
   });
 
   it('should create a todo', async () => {
-    const token = '1.user';
+    const token = 'Bearer 1.user';
     const todo: Todo = await usecase.createTodo('Practice guitar', token);
     expect(todo).toBeDefined();
     expect(todo.id).toBeDefined();

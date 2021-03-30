@@ -1,7 +1,6 @@
-import { AuthenticatedCustomer } from '../../models/authenticatedCustomer';
-import { AuthenticationGateway } from './../../gateways/authenticationGateway.interface';
-import { Todo } from './../../models/todo';
-import { TodoRepository } from './../../repositories/todoRepository.interface';
+import { AuthenticationGateway } from '../../gateways';
+import { AuthenticatedCustomer, Todo } from '../../models';
+import { TodoRepository } from '../../repositories';
 
 export class CreateTodoUseCase {
   private todoRepository: TodoRepository;
@@ -21,8 +20,5 @@ export class CreateTodoUseCase {
       .then(
         async (customer: AuthenticatedCustomer) =>
           await this.todoRepository.createTodo(title, customer.id),
-      )
-      .catch((error) => {
-        throw error;
-      });
+      );
 }

@@ -20,8 +20,5 @@ export class RetrieveTodosByCustomerIdUseCase {
       .then(
         async (customer: AuthenticatedCustomer) =>
           await this.todoRepository.retrieveByCustomerId(customer.id),
-      )
-      .catch((error) => {
-        throw error;
-      });
+      );
 }

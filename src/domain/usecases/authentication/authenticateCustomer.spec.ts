@@ -1,7 +1,8 @@
+import { AuthenticateCustomerUseCase } from '../../usecases';
+import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
 import { InMemoryUserRepository } from '../../../adapters/secondaries/users/InMemoryUserRepository';
-import { InMemoryAuthenticationGateway } from './../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
-import { AuthenticationGateway } from './../../../domain/gateways/authenticationGateway.interface';
-import { AuthenticateCustomerUseCase } from './authenticateCustomerUseCase';
+import { AuthenticationGateway } from '../../gateways';
+import { User } from '../../models';
 
 const userRepository: InMemoryUserRepository = new InMemoryUserRepository();
 const authenticationGateway: AuthenticationGateway = new InMemoryAuthenticationGateway(
@@ -17,7 +18,11 @@ describe('Authenticate Customer Usecase', () => {
   });
 
   it('should return a token if the customer is a valid customer', async () => {
-    const user = { id: 'fakeId', login: 'fakeUser', password: 'fakePassword' };
+    const user: User = {
+      id: 'fakeId',
+      login: 'fakeUser',
+      password: 'fakePassword',
+    };
     userRepository.addUsers(user);
 
     const token = await usecase.login(user.login, user.password);
