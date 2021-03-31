@@ -7,12 +7,14 @@ import {
   Param,
   Post,
   UnauthorizedException,
+  Put,
 } from '@nestjs/common';
 import { Todo } from '../../../domain/models';
 import {
   CreateTodoUseCase,
   RetrieveTodosByCustomerIdUseCase,
   RetrieveTodosUseCase,
+  ModifyTodoUseCase,
 } from '../../../domain/usecases';
 
 @Controller('todos')
@@ -21,6 +23,7 @@ export class TodosController {
     private retrieveTodoUseCases: RetrieveTodosUseCase,
     private createTodoUseCase: CreateTodoUseCase,
     private retrieveByCustomerId: RetrieveTodosByCustomerIdUseCase,
+    private modifyTodo: ModifyTodoUseCase,
   ) {}
 
   @Get('/all')
@@ -45,6 +48,16 @@ export class TodosController {
       .catch((err) => {
         throw new UnauthorizedException(err.message);
       });
+  }
+
+  @Put()
+  async modify(
+    @Body() todo: Todo,
+    @Headers('authorization') token,
+  ): Promise<Todo> {
+    return await this.modifyTodo.handle(todo, token).catch((err) => {
+      throw new UnauthorizedException(err.message);
+    });
   }
 
   @Get()

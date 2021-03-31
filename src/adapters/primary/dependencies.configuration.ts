@@ -2,6 +2,7 @@ import { FactoryProvider, Provider } from '@nestjs/common';
 import {
   AuthenticateCustomerUseCase,
   CreateTodoUseCase,
+  ModifyTodoUseCase,
   RetrieveTodosByCustomerIdUseCase,
   RetrieveTodosUseCase,
 } from '../../domain/usecases';
@@ -58,6 +59,17 @@ const retrieveTodosByCustomerIdUseCase = {
   inject: [JSONPlaceholderTodoRepository, JWTTokenAuthenticationGateway],
 };
 
+const modifyTodoUsecase = {
+  provide: ModifyTodoUseCase,
+  useFactory: (
+    todoRepository: JSONPlaceholderTodoRepository,
+    authenticationGateway: JWTTokenAuthenticationGateway,
+  ) => {
+    return new ModifyTodoUseCase(todoRepository, authenticationGateway);
+  },
+  inject: [JSONPlaceholderTodoRepository, JWTTokenAuthenticationGateway],
+};
+
 const todoRepositoryProvider = <T>(repository: T): Provider<T> => {
   return { provide: JSONPlaceholderTodoRepository, useValue: repository };
 };
@@ -78,4 +90,5 @@ export const dependencies = [
   retrieveTodosUseCase,
   createTodosUseCase,
   retrieveTodosByCustomerIdUseCase,
+  modifyTodoUsecase,
 ];

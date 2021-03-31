@@ -29,7 +29,7 @@ export class InMemoryTodoRepository implements TodoRepository {
   retrieveAllTodos = (): Promise<Array<Todo>> =>
     new Promise((resolve) => resolve(this.todos));
 
-  retrieveById = async (id: string): Promise<Todo> => {
+  retrieveById = (id: string): Promise<Todo> => {
     return new Promise((resolve, reject) => {
       const todo: Todo = this.todos.find((todo) => todo.id === id);
       if (todo) resolve(todo);
@@ -41,6 +41,14 @@ export class InMemoryTodoRepository implements TodoRepository {
     new Promise((resolve) =>
       resolve(this.todos.filter((todo) => todo.customerId === customerId)),
     );
+
+  update = (todo: Todo): Promise<Todo> => {
+    this.todos = this.todos.filter((t) => t.id !== todo.id);
+    this.todos.push(todo);
+    return new Promise((resolve) => {
+      resolve(this.todos.find((t) => t.id === todo.id));
+    });
+  };
 
   // InMemory Utilitaries functions
   addTodos = (...todos: Todo[]) => todos.map((t) => this.todos.push(t));

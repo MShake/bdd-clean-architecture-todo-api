@@ -8,6 +8,9 @@ const db = axios.create({
 
 export class JSONPlaceholderTodoRepository implements TodoRepository {
   constructor() {}
+  update(todo: Todo): Promise<Todo> {
+    throw new Error('Method not implemented.');
+  }
 
   retrieveByCustomerId(customerId: string): Promise<Todo[]> {
     throw new Error('Method not implemented.');

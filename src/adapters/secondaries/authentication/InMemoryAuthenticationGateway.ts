@@ -13,18 +13,18 @@ export class InMemoryAuthenticationGateway implements AuthenticationGateway {
       throw new Error('Access Denied: Invalid Token');
 
     const splitToken = token.toString().split(' ')[1].split('.');
-    return new Promise((resolve, reject) =>
-      this.isValid(token)
-        ? resolve({
-            id: splitToken[0],
-            login: splitToken[1],
-          })
-        : reject(),
+    return new Promise((resolve) =>
+      resolve({
+        id: splitToken[0],
+        login: splitToken[1],
+      }),
     );
   };
 
   isValid = (token: string): boolean =>
-    token.toString().split('.').length === 2 ? true : false;
+    token.startsWith('Bearer ') && token.toString().split('.').length === 2
+      ? true
+      : false;
 
   getCurrentCustomer = (): Promise<AuthenticatedCustomer> =>
     new Promise((resolve, reject) =>

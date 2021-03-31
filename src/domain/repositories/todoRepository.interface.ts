@@ -5,4 +5,5 @@ export interface TodoRepository {
   retrieveAllTodos(): Promise<Array<Todo>>;
   retrieveById(id: string): Promise<Todo>;
   retrieveByCustomerId(customerId: string): Promise<Array<Todo>>;
+  update(todo: Todo): Promise<Todo>;
 }
