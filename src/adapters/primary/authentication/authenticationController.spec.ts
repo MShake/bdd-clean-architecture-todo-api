@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { AuthenticateCustomerUseCase } from '../../../domain/usecases/authentication/authenticateCustomerUseCase';
-import { InMemoryAuthenticationGateway } from '../../secondaries/authentication/InMemoryAuthenticationGateway';
+import { InMemoryAuthenticationGateway } from '../../secondaries/authentication/inMemoryAuthenticationGateway';
 import { InMemoryUserRepository } from '../../secondaries/users/InMemoryUserRepository';
 import { AuthenticationController } from './authentication.controller';
 
