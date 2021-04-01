@@ -9,13 +9,11 @@ import {
   UnauthorizedException,
   Put,
 } from '@nestjs/common';
-import { Todo } from '../../../domain/models';
-import {
-  CreateTodoUseCase,
-  RetrieveTodosByCustomerIdUseCase,
-  RetrieveTodosUseCase,
-  ModifyTodoUseCase,
-} from '../../../domain/usecases';
+import { Todo } from '../../../domain/models/todo';
+import { CreateTodoUseCase } from '../../../domain/usecases/todos/createTodoUsecase';
+import { ModifyTodoUseCase } from '../../../domain/usecases/todos/ModifyTodoUsecase';
+import { RetrieveTodosByCustomerIdUseCase } from '../../../domain/usecases/todos/retrieveTodosByCustomerIdUsecase';
+import { RetrieveTodosUseCase } from '../../../domain/usecases/todos/retrieveTodosUsecase';
 
 @Controller('todos')
 export class TodosController {

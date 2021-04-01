@@ -1,6 +1,7 @@
-import { AuthenticationGateway } from '../../gateways';
-import { AuthenticatedCustomer, Todo } from '../../models';
-import { TodoRepository } from '../../repositories';
+import { AuthenticationGateway } from '../../gateways/authenticationGateway.interface';
+import { AuthenticatedCustomer } from '../../models/authenticatedCustomer';
+import { Todo } from '../../models/todo';
+import { TodoRepository } from '../../repositories/todoRepository.interface';
 
 export class CreateTodoUseCase {
   private todoRepository: TodoRepository;

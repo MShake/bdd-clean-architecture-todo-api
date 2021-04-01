@@ -1,15 +1,13 @@
 import { InMemoryTodoRepository } from '../../secondaries/todos/InMemoryTodoRepository';
-import { Todo } from './../../../domain/models';
+
 import { TodosController } from './todos.controller';
 import { InMemoryAuthenticationGateway } from '../../secondaries/authentication/InMemoryAuthenticationGateway';
 import { InMemoryUserRepository } from '../../secondaries/users/InMemoryUserRepository';
-
-import {
-  CreateTodoUseCase,
-  ModifyTodoUseCase,
-  RetrieveTodosByCustomerIdUseCase,
-  RetrieveTodosUseCase,
-} from '../../../domain/usecases';
+import { Todo } from '../../../domain/models/todo';
+import { CreateTodoUseCase } from '../../../domain/usecases/todos/createTodoUsecase';
+import { ModifyTodoUseCase } from '../../../domain/usecases/todos/ModifyTodoUsecase';
+import { RetrieveTodosByCustomerIdUseCase } from '../../../domain/usecases/todos/retrieveTodosByCustomerIdUsecase';
+import { RetrieveTodosUseCase } from '../../../domain/usecases/todos/retrieveTodosUsecase';
 
 const todoRepository = new InMemoryTodoRepository();
 const userRepository = new InMemoryUserRepository();

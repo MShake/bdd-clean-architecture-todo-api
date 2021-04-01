@@ -1,5 +1,5 @@
 import { Body, Controller, NotFoundException, Get } from '@nestjs/common';
-import { AuthenticateCustomerUseCase } from '../../../domain/usecases';
+import { AuthenticateCustomerUseCase } from '../../../domain/usecases/authentication/authenticateCustomerUseCase';
 
 @Controller('auth')
 export class AuthenticationController {

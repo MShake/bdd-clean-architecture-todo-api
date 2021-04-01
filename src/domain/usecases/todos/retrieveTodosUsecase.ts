@@ -1,5 +1,5 @@
-import { Todo } from '../../models';
-import { TodoRepository } from '../../repositories';
+import { Todo } from '../../models/todo';
+import { TodoRepository } from '../../repositories/todoRepository.interface';
 
 export class RetrieveTodosUseCase {
   private todoRepository: TodoRepository;

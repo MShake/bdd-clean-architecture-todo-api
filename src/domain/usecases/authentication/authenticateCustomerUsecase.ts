@@ -1,4 +1,4 @@
-import { AuthenticationGateway } from '../../gateways';
+import { AuthenticationGateway } from '../../gateways/authenticationGateway.interface';
 
 export class AuthenticateCustomerUseCase {
   private authenticationGateway: AuthenticationGateway;

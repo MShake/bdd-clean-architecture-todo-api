@@ -1,6 +1,6 @@
-import { AuthenticationGateway } from '../../gateways';
-import { Todo } from '../../models';
-import { TodoRepository } from '../../repositories';
+import { AuthenticationGateway } from '../../gateways/authenticationGateway.interface';
+import { Todo } from '../../models/todo';
+import { TodoRepository } from '../../repositories/todoRepository.interface';
 
 export class ModifyTodoUseCase {
   constructor(

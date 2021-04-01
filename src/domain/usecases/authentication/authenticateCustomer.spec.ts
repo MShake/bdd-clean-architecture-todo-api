@@ -1,8 +1,8 @@
-import { AuthenticateCustomerUseCase } from '../../usecases';
 import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
 import { InMemoryUserRepository } from '../../../adapters/secondaries/users/InMemoryUserRepository';
-import { AuthenticationGateway } from '../../gateways';
-import { User } from '../../models';
+import { AuthenticationGateway } from '../../gateways/authenticationGateway.interface';
+import { User } from '../../models/user';
+import { AuthenticateCustomerUseCase } from './authenticateCustomerUseCase';
 
 const userRepository: InMemoryUserRepository = new InMemoryUserRepository();
 const authenticationGateway: AuthenticationGateway = new InMemoryAuthenticationGateway(

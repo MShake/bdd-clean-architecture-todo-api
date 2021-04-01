@@ -1,6 +1,6 @@
-import { Todo } from './../../models';
+import { Todo } from '../../models/todo';
 import { InMemoryTodoRepository } from './../../../adapters/secondaries/todos/InMemoryTodoRepository';
-import { RetrieveTodosUseCase } from './../../usecases';
+import { RetrieveTodosUseCase } from './retrieveTodosUsecase';
 
 const todoRepository: InMemoryTodoRepository = new InMemoryTodoRepository();
 const usecase: RetrieveTodosUseCase = new RetrieveTodosUseCase(todoRepository);

@@ -1,4 +1,4 @@
-import { AuthenticatedCustomer } from '../models';
+import { AuthenticatedCustomer } from '../models/authenticatedCustomer';
 
 export interface AuthenticationGateway {
   authenticate(token: string): Promise<AuthenticatedCustomer>;
