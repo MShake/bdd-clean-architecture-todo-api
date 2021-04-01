@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { Todo } from '../../../domain/models/todo';
 import { CreateTodoUseCase } from '../../../domain/usecases/todos/createTodoUsecase';
-import { ModifyTodoUseCase } from '../../../domain/usecases/todos/ModifyTodoUsecase';
+import { ModifyTodoUseCase } from '../../../domain/usecases/todos/modifyTodoUseCase';
 import { RetrieveTodosByCustomerIdUseCase } from '../../../domain/usecases/todos/retrieveTodosByCustomerIdUsecase';
 import { RetrieveTodosUseCase } from '../../../domain/usecases/todos/retrieveTodosUsecase';
 
