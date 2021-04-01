@@ -25,18 +25,18 @@ describe('Retrieve todos usecase', () => {
 
   describe('Retrieve by ID', () => {
     it('should retrieve the right todo', async () => {
-      const todo: Todo = await usecase.retrieveTodoById('xgs');
+      const todo: Todo = await usecase.handle('xgs');
       expect(todo.title).toBe('Apprendre NgRx');
     });
 
     it('should throw error if param is an empty string', async () => {
-      await expect(usecase.retrieveTodoById('')).rejects.toThrowError(
+      await expect(usecase.handle('')).rejects.toThrowError(
         'Empty param is not allowed',
       );
     });
 
     it('should throw error if unknow ID is pass as param', async () => {
-      await expect(usecase.retrieveTodoById('unknowId')).rejects.toThrowError(
+      await expect(usecase.handle('unknowId')).rejects.toThrowError(
         'Your ID is not know about our service',
       );
     });

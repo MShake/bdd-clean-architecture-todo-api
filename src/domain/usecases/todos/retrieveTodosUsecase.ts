@@ -10,7 +10,7 @@ export class RetrieveTodosUseCase {
 
   retrieveAllTodos = async () => await this.todoRepository.retrieveAllTodos();
 
-  retrieveTodoById = async (id: string): Promise<Todo> => {
+  handle = async (id: string): Promise<Todo> => {
     if (id === '') {
       throw Error('Empty param is not allowed');
     }

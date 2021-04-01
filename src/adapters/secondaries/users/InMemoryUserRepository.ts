@@ -1,5 +1,5 @@
-import { User } from '../../../domain/models/user';
-import { UserRepository } from '../../../domain/repositories/userRepository.interface';
+import { User } from '../../../domain/models';
+import { UserRepository } from '../../../domain/repositories';
 
 export class InMemoryUserRepository implements UserRepository {
   users: Array<User> = [

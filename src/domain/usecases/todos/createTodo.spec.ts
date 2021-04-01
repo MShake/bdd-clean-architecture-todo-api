@@ -1,5 +1,5 @@
 import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
-import { Todo } from '../../models';
+import { Todo } from '../../models/index';
 import { InMemoryTodoRepository } from '../../../adapters/secondaries/todos/InMemoryTodoRepository';
 import { CreateTodoUseCase } from './../../usecases';
 import { InMemoryUserRepository } from '../../../adapters/secondaries/users/InMemoryUserRepository';
@@ -22,7 +22,7 @@ describe('Create Todo Usecase', () => {
 
   it('should create a todo', async () => {
     const token = 'Bearer 1.user';
-    const todo: Todo = await usecase.createTodo('Practice guitar', token);
+    const todo: Todo = await usecase.handle('Practice guitar', token);
     expect(todo).toBeDefined();
     expect(todo.id).toBeDefined();
     expect(todo.customerId).toBe('1');
@@ -32,8 +32,8 @@ describe('Create Todo Usecase', () => {
 
   it('should throw error if we have not a valid token', async () => {
     const token = 'invalidToken.toke.bidon';
-    await expect(
-      usecase.createTodo('Practice guitar', token),
-    ).rejects.toThrowError('Access Denied: Invalid Token');
+    await expect(usecase.handle('Practice guitar', token)).rejects.toThrowError(
+      'Access Denied: Invalid Token',
+    );
   });
 });

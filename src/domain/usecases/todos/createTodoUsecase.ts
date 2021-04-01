@@ -14,7 +14,7 @@ export class CreateTodoUseCase {
     this.authenticationGateway = authenticationGateway;
   }
 
-  createTodo = async (title: string, token: string): Promise<Todo> =>
+  handle = async (title: string, token: string): Promise<Todo> =>
     this.authenticationGateway
       .authenticate(token)
       .then(

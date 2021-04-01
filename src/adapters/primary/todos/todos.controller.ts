@@ -33,7 +33,7 @@ export class TodosController {
 
   @Get('/:id')
   async findById(@Param('id') id: string): Promise<Todo> {
-    return await this.retrieveTodoUseCases.retrieveTodoById(id).catch((err) => {
+    return await this.retrieveTodoUseCases.handle(id).catch((err) => {
       throw new NotFoundException(err.message);
     });
   }
@@ -44,7 +44,7 @@ export class TodosController {
     @Headers('authorization') token,
   ): Promise<Todo> {
     return await this.createTodoUseCase
-      .createTodo(todo.title, token)
+      .handle(todo.title, token)
       .catch((err) => {
         throw new UnauthorizedException(err.message);
       });

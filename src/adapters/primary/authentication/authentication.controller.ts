@@ -1,16 +1,16 @@
-import { Body, Controller, Get, NotFoundException, Post } from '@nestjs/common';
-import { AuthenticateCustomerUseCase as AuthenticateCustomer } from '../../../domain/usecases';
+import { Body, Controller, NotFoundException, Get } from '@nestjs/common';
+import { AuthenticateCustomerUseCase } from '../../../domain/usecases';
 
 @Controller('auth')
 export class AuthenticationController {
-  constructor(private authenticateCustomer: AuthenticateCustomer) {}
+  constructor(private usecase: AuthenticateCustomerUseCase) {}
 
-  @Post()
+  @Get()
   async login(
     @Body() authRequest: { login: string; password: string },
   ): Promise<string> {
-    return this.authenticateCustomer
-      .login(authRequest.login, authRequest.password)
+    return this.usecase
+      .handle(authRequest.login, authRequest.password)
       .catch((e) => {
         throw new NotFoundException(e.message);
       });

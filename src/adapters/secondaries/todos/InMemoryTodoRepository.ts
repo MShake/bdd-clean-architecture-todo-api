@@ -1,5 +1,5 @@
-import { Todo } from '../../../domain/models/todo';
-import { TodoRepository } from '../../../domain/repositories/todoRepository.interface';
+import { Todo } from '../../../domain/models';
+import { TodoRepository } from '../../../domain/repositories';
 import { v4 as uuid } from 'uuid';
 
 export class InMemoryTodoRepository implements TodoRepository {

@@ -1,4 +1,4 @@
-import { Todo } from '../../../domain/models/todo';
+import { Todo } from '../../../domain/models';
 import axios from 'axios';
 import { TodoRepository } from '../../../domain/repositories';
 

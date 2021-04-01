@@ -1,9 +1,4 @@
-export interface AuthenticatedCustomer {
-  id: string;
-  login: string;
-}
-
-export type AuthenticatedCustomerType = {
+export type AuthenticatedCustomer = {
   id: string;
   login: string;
 };

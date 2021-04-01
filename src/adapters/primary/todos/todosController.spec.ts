@@ -6,6 +6,7 @@ import { InMemoryUserRepository } from '../../secondaries/users/InMemoryUserRepo
 
 import {
   CreateTodoUseCase,
+  ModifyTodoUseCase,
   RetrieveTodosByCustomerIdUseCase,
   RetrieveTodosUseCase,
 } from '../../../domain/usecases';
@@ -21,14 +22,26 @@ const createTodoUsecase: CreateTodoUseCase = new CreateTodoUseCase(
   todoRepository,
   authenticationGateway,
 );
-const retrieveTodoUsecases: RetrieveTodosUseCase = new RetrieveTodosUseCase(
+const retrieveTodosUsecases: RetrieveTodosUseCase = new RetrieveTodosUseCase(
   todoRepository,
 );
+const modifyTodoUseCase: ModifyTodoUseCase = new ModifyTodoUseCase(
+  todoRepository,
+  authenticationGateway,
+);
 const todosController: TodosController = new TodosController(
-  retrieveTodoUsecases,
+  retrieveTodosUsecases,
   createTodoUsecase,
   retrieveTodosByCustomerIdUsecase,
+  modifyTodoUseCase,
 );
+
+const todo: Todo = {
+  id: 'abc',
+  title: 'Learn NestJS',
+  customerId: '789',
+  complete: false,
+};
 
 describe('TodosController', () => {
   beforeEach(() => {
@@ -39,38 +52,43 @@ describe('TodosController', () => {
     );
   });
 
-  describe('retrieve all todos', () => {
-    it('should return an array of todos', async () => {
-      const todos: Array<Todo> = [
-        {
-          id: 'abc',
-          title: 'Learn NestJS',
-          customerId: '789',
-          complete: true,
-        },
-        { id: 'xgs', title: 'Learn Redux', customerId: '789', complete: false },
-      ];
-      jest
-        .spyOn(retrieveTodoUsecases, 'retrieveAllTodos')
-        .mockResolvedValue(todos);
-
-      expect(await todosController.findAll()).toBe(todos);
+  describe('findAll() method', () => {
+    it('should call the retrieveAllTodos usecase', async () => {
+      const handle = jest.spyOn(retrieveTodosUsecases, 'retrieveAllTodos');
+      await todosController.findAll();
+      expect(handle).toHaveBeenCalled();
     });
   });
 
-  describe('retrieve a todo by id', () => {
-    it('should return one todo', async () => {
-      const todo: Todo = {
-        id: 'xgs',
-        title: 'Learn Redux',
-        customerId: '789',
-        complete: false,
-      };
-      jest
-        .spyOn(retrieveTodoUsecases, 'retrieveTodoById')
-        .mockResolvedValue(todo);
+  describe('retrieveUserTodos() method', () => {
+    it('should call the retrieveAllTodos usecase', async () => {
+      const handle = jest.spyOn(retrieveTodosByCustomerIdUsecase, 'handle');
+      await todosController.retrieveUserTodos('Bearer 1.user');
+      expect(handle).toHaveBeenCalled();
+    });
+  });
 
-      expect(await todosController.findById('xgs')).toBe(todo);
+  describe('modify() method', () => {
+    it('should call the modifyTodo usecase', async () => {
+      const handle = jest.spyOn(modifyTodoUseCase, 'handle');
+      await todosController.modify(todo, 'Bearer 1.user');
+      expect(handle).toHaveBeenCalled();
+    });
+  });
+
+  describe('create() method', () => {
+    it('should call the createTodo usecase', async () => {
+      const handle = jest.spyOn(createTodoUsecase, 'handle');
+      await todosController.create(todo, 'Bearer 1.user');
+      expect(handle).toHaveBeenCalled();
+    });
+  });
+
+  describe('findById() method', () => {
+    it('should call retrieveTodo usecases', async () => {
+      const handle = jest.spyOn(retrieveTodosUsecases, 'handle');
+      await todosController.findById('xgs');
+      expect(handle).toHaveBeenCalled();
     });
   });
 });

@@ -25,14 +25,14 @@ describe('Authenticate Customer Usecase', () => {
     };
     userRepository.addUsers(user);
 
-    const token = await usecase.login(user.login, user.password);
+    const token = await usecase.handle(user.login, user.password);
     expect(token).toBeDefined();
   });
 
   it('should return a token if the customer is a valid customer', async () => {
     const user = { id: 'fakeId', login: 'fakeUser', password: 'fakePassword' };
-    await expect(usecase.login(user.login, user.password)).rejects.toThrowError(
-      'User Not Found',
-    );
+    await expect(
+      usecase.handle(user.login, user.password),
+    ).rejects.toThrowError('User Not Found');
   });
 });

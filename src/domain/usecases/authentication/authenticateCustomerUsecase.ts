@@ -7,6 +7,6 @@ export class AuthenticateCustomerUseCase {
     this.authenticationGateway = authenticationGateway;
   }
 
-  login = async (login: string, password: string): Promise<string> =>
+  handle = async (login: string, password: string): Promise<string> =>
     await this.authenticationGateway.login(login, password);
 }

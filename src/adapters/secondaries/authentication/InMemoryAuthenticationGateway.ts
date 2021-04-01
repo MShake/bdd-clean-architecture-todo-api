@@ -1,5 +1,5 @@
 import { AuthenticationGateway } from '../../../domain/gateways/authenticationGateway.interface';
-import { AuthenticatedCustomer } from '../../../domain/models/authenticatedCustomer';
+import { AuthenticatedCustomer } from '../../../domain/models';
 import { UserRepository } from '../../../domain/repositories/userRepository.interface';
 
 export class InMemoryAuthenticationGateway implements AuthenticationGateway {
