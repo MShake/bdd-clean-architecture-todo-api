@@ -1,4 +1,4 @@
-import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
+import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/inMemoryAuthenticationGateway';
 import { InMemoryUserRepository } from '../../../adapters/secondaries/users/InMemoryUserRepository';
 import { AuthenticationGateway } from '../../gateways/authenticationGateway.interface';
 import { User } from '../../models/user';
