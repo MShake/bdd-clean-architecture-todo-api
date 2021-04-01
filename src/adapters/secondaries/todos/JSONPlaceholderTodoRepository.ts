@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { Todo } from '../../../domain/models/todo';
-import { TodoRepository } from '../../../domain/repositories/todoRepository.interface';
+import { Todo } from './../../../domain/models/todo';
+import { TodoRepository } from './../../../domain/repositories/todoRepository.interface';
 
 const db = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',

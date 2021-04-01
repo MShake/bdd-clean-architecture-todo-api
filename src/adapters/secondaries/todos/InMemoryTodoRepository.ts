@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
-import { Todo } from '../../../domain/models/todo';
-import { TodoRepository } from '../../../domain/repositories/todoRepository.interface';
+import { Todo } from './../../../domain/models/todo';
+import { TodoRepository } from './../../../domain/repositories/todoRepository.interface';
 
 export class InMemoryTodoRepository implements TodoRepository {
   todos: Array<Todo> = [

@@ -1,5 +1,5 @@
 import { AuthenticationGateway } from 'src/domain/gateways/authenticationGateway.interface';
-import { AuthenticatedCustomer } from '../../../domain/models';
+import { AuthenticatedCustomer } from '../../../domain/models/authenticatedCustomer';
 
 export class JWTTokenAuthenticationGateway implements AuthenticationGateway {
   isValid = (token: string): boolean => {
