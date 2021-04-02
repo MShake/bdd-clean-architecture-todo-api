@@ -1,9 +1,9 @@
-import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
+import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/inmemory-authentication-gateway';
 import { InMemoryTodoRepository } from '../../../adapters/secondaries/todos/InMemoryTodoRepository';
 import { InMemoryUserRepository } from '../../../adapters/secondaries/users/InMemoryUserRepository';
 import { Todo } from '../../models/todo';
 
-import { ModifyTodoUseCase } from './ModifyTodoUsecase';
+import { ModifyTodoUseCase } from './modifyTodoUseCase';
 
 const todoRepository: InMemoryTodoRepository = new InMemoryTodoRepository();
 const userRepository: InMemoryUserRepository = new InMemoryUserRepository();

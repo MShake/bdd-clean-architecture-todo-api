@@ -1,4 +1,4 @@
-import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/InMemoryAuthenticationGateway';
+import { InMemoryAuthenticationGateway } from '../../../adapters/secondaries/authentication/inmemory-authentication-gateway';
 
 import { InMemoryTodoRepository } from '../../../adapters/secondaries/todos/InMemoryTodoRepository';
 

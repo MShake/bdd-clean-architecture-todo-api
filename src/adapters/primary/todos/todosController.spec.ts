@@ -1,7 +1,7 @@
 import { InMemoryTodoRepository } from './../../secondaries/todos/InMemoryTodoRepository';
 
 import { TodosController } from './todos.controller';
-import { InMemoryAuthenticationGateway } from './../../secondaries/authentication/InMemoryAuthenticationGateway';
+import { InMemoryAuthenticationGateway } from '../../secondaries/authentication/inmemory-authentication-gateway';
 import { InMemoryUserRepository } from './../../secondaries/users/InMemoryUserRepository';
 import { Todo } from './../../../domain/models/todo';
 import { CreateTodoUseCase } from './../../../domain/usecases/todos/createTodoUsecase';
