@@ -1,6 +1,6 @@
 import { FactoryProvider, Provider } from '@nestjs/common';
 
-import { InMemoryAuthenticationGateway } from '../secondaries/authentication/inMemoryAuthenticationGateway';
+import { InMemoryAuthenticationGateway } from '../secondaries/authentication/inmemory-authentication-gateway';
 import { JWTTokenAuthenticationGateway } from '../secondaries/authentication/JWTTokenAuthenticationGateway';
 import { InMemoryTodoRepository } from '../secondaries/todos/InMemoryTodoRepository';
 import { InMemoryUserRepository } from '../secondaries/users/InMemoryUserRepository';
